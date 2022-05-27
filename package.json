@@ -1,0 +1,18 @@
+{
+  "name": "bot-download-tiktok",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon bot",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "zalazarc20",
+  "license": "ISC",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.57.0",
+    "tiktok-scraper-without-watermark": "^1.1.3"
+  }
+}
