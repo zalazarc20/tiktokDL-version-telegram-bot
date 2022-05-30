@@ -3,18 +3,18 @@ import { getUrl } from "./src/getUrl.js";
 import { lang } from "./src/language.js";
 import { validateDomain } from "./src/validateDomain.js";
 
-const token = 'YOUR-TOKEN-BOT';
+const token = 'YOUR-TOKEN';
 const bot = new TelegramBot(token, {polling: true});
-lang.cb('en');
+if(lang.welcome === '') lang.cb('en');
 
 // start message
 bot.onText(/^\/start/, (msg) => {
     const chatId = msg.chat.id;
     const nameUser = msg.from.first_name;
-    
+
     bot.sendMessage(chatId, lang.welcome);
 });
-
+// language
 bot.onText(/^\/lang/, msg => {
     let chatId = msg.chat.id;
 
@@ -29,23 +29,25 @@ bot.onText(/^\/lang/, msg => {
 
     bot.sendMessage(chatId, lang.lang, options)
 })
-
+// detect url
 bot.onText(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:((www|[a-zA-Z0-9]+)\.))?([^:\/\n\?\=]+)/, async (msg, math) => {
     let chatId = msg.chat.id;
     let url = math.input;
     
     if(validateDomain(url)){
-        getUrl(url, link => bot.sendVideo(chatId, link));
+        getUrl(url, link => {
+            bot.sendVideo(chatId, link);
+        });
     }else{
         bot.sendMessage(chatId, lang.error);
     }
 });
 
-// obteniendo errores
+// get errors
 bot.on('polling_error', function(error){
     console.log(error);
 });
-
+// get language options
 bot.on('callback_query', msg => {
     msg.data === '1' ? lang.cb('es') : lang.cb('en');
     let text = msg.data === '1' ? 'cambiaste el idioma del bot a Español' : 'change language to English';
