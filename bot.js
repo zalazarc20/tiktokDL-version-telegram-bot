@@ -10,8 +10,6 @@ if(lang.welcome === '') lang.cb('en');
 // start message
 bot.onText(/^\/start/, (msg) => {
     const chatId = msg.chat.id;
-    const nameUser = msg.from.first_name;
-
     bot.sendMessage(chatId, lang.welcome);
 });
 // language
