@@ -1,11 +1,11 @@
 {
   "name": "bot-download-tiktok",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.1",
+  "description": "Download tiktok videos",
+  "main": "bot.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon bot",
+    "start": "node ./bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
